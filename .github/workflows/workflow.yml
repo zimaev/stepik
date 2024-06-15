@@ -27,6 +27,7 @@ jobs:
         with:
           name: allure_report
           path: reports/
+
       - name: Load test report history
         uses: actions/checkout@v3
         if: always()
@@ -46,6 +47,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v2
         if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_branch: gh-pages
+            publish_dir: allure-history
