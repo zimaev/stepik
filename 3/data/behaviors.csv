@@ -1,0 +1,3 @@
+"Epic","Feature","Story","FAILED","BROKEN","PASSED","SKIPPED","UNKNOWN"
+"","Login","Login with valid credentials","0","0","6","0","0"
+"","Авторизаци","Авторизации недействительные учетные данные","0","0","3","0","0"
