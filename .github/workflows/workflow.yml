@@ -28,25 +28,28 @@ jobs:
           name: allure_report
           path: reports/
 
-      - name: Load test report history
-        uses: actions/checkout@v3
+      - name: Get Allure history
+        uses: actions/checkout@v2
         if: always()
         continue-on-error: true
         with:
           ref: gh-pages
           path: gh-pages
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
-        if: always()
-        with:
-          gh_pages: gh-pages
-          allure_history: allure-history
-          allure_results: reports
 
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v2
+      - uses: simple-elf/allure-report-action@master
         if: always()
+        id: allure-report
         with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: allure-history
+          allure_results: reports
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+
+
+
+      - uses: peaceiris/actions-gh-pages@v2
+        if: always()
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
